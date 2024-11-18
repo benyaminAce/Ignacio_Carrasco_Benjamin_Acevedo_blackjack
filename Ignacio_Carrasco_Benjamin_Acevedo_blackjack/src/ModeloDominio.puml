@@ -1,0 +1,29 @@
+@startuml
+
+
+entity Carta {
+    numero
+    pinta
+}
+
+entity Jugador {
+    nombre
+    cartas
+    puntuacion
+}
+
+entity Baraja {
+    cartas
+}
+
+entity MesaDeJuego {
+    jugador
+    crupier
+    baraja
+}
+
+MesaDeJuego "1" --> "1..*" Jugador : tiene
+MesaDeJuego "1" --> "1" Baraja : gestiona
+Jugador "1" --> "0..*" Carta : tiene
+
+@enduml

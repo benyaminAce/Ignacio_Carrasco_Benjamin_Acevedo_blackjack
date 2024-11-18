@@ -1,0 +1,49 @@
+@startuml
+skin rose
+
+
+class MesaDeJuego {
+    - cartasJugador: List<Carta>
+    - cartasCrupier: List<Carta>
+    - baraja: Baraja
+    + empezarPartida(): void
+    + contar(cartas: List<Carta>): int
+    + preguntarJugador(): void
+    + crupier(): void
+    + decidirGanador(): void
+}
+
+class Baraja {
+    - cartas: List<Carta>
+    + obtener(): Carta
+    + barajar(): void
+}
+
+class Carta {
+    - pinta: Pinta
+    - numero: int
+    + getPinta(): Pinta
+    + getValor(): int
+    + toString(): String
+}
+
+class Jugador {
+    - cartas: List<Carta>
+    + getCartas(): List<Carta>
+}
+
+enum Pinta {
+    PICA
+    CORAZON
+    TREBOL
+    DIAMANTE
+}
+
+MesaDeJuego "1" *-- "1" Baraja : gestiona
+MesaDeJuego "1" *-- "*" Carta : maneja
+MesaDeJuego "1" *-- "*" Jugador : maneja
+Carta "1" *-- "1" Pinta : tiene
+Jugador "1" *-- "*" Carta : recibe
+
+
+@enduml
